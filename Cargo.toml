@@ -4,6 +4,7 @@ version = "0.1.0"
 authors = ["teruyamato0731"]
 edition = "2021"
 description = "A simple PID controller library for Rust."
+documentation = "https://docs.rs/advanced-pid/"
 readme = "README.md"
 repository = "https://github.com/teruyamato0731/advanced-pid-rs"
 license = "MIT"
