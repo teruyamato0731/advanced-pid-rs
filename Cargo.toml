@@ -1,0 +1,26 @@
+[package]
+name = "pid_controller"
+version = "0.1.0"
+authors = ["teruyamato0731"]
+edition = "2021"
+description = "A simple PID controller library for Rust."
+documentation = ""
+readme = "README.md"
+repository = "https://github.com/teruyamato0731/pid-controller-rs"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "pid_controller"
+path = "src/lib.rs"
+
+[features]
+default = ["std", "f32"]
+std = []
+f32 = []
+f64 = []
+
+[dependencies]
+
+[dev-dependencies]
