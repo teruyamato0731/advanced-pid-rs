@@ -1,0 +1,16 @@
+version: '3'
+services:
+  pid-controller-rs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      # Working
+      - ..:/workspaces/pid-controller-rs:cached
+      # device access
+      - /dev:/dev
+    working_dir: /workspaces/pid-controller-rs
+    tty: true
+    command: sleep inf
+    # device access
+    privileged: true

@@ -1,0 +1,17 @@
+{
+	"name": "pid-controller-rs",
+	"dockerComposeFile": [
+		"docker-compose.yml"
+	],
+	"service": "pid-controller-rs",
+	"workspaceFolder": "/workspaces/pid-controller-rs",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"rust-lang.rust-analyzer",
+				"tamasfe.even-better-toml",
+				"serayuzgur.crates"
+			]
+		}
+	}
+}
