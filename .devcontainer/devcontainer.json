@@ -1,10 +1,10 @@
 {
-	"name": "pid-controller-rs",
+	"name": "advanced-pid-rs",
 	"dockerComposeFile": [
 		"docker-compose.yml"
 	],
-	"service": "pid-controller-rs",
-	"workspaceFolder": "/workspaces/pid-controller-rs",
+	"service": "advanced-pid-rs",
+	"workspaceFolder": "/workspaces/advanced-pid-rs",
 	"customizations": {
 		"vscode": {
 			"extensions": [

@@ -1,15 +1,15 @@
 version: '3'
 services:
-  pid-controller-rs:
+  advanced-pid-rs:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
       # Working
-      - ..:/workspaces/pid-controller-rs:cached
+      - ..:/workspaces/advanced-pid-rs:cached
       # device access
       - /dev:/dev
-    working_dir: /workspaces/pid-controller-rs
+    working_dir: /workspaces/advanced-pid-rs
     tty: true
     command: sleep inf
     # device access
