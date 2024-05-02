@@ -31,9 +31,8 @@ impl PidController for PiD {
         } else {
             (actual - self.pre_actual) / dt
         };
-        let output = self.config.gain.kp * error
-            + self.config.gain.ki * self.i_term
-            + self.config.gain.kd * d_term;
+        let output = self.config.gain.kp * error + self.config.gain.ki * self.i_term
+            - self.config.gain.kd * d_term;
         self.pre_actual = actual;
         output.clamp(self.config.min, self.config.max)
     }
