@@ -37,3 +37,55 @@ impl PidController for PiD {
         output.clamp(self.config.min, self.config.max)
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_pi_d_controller_p() {
+        let gain = crate::PidGain {
+            kp: 1.0,
+            ki: 0.0,
+            kd: 0.0,
+        };
+        let mut pid = PiD::new(gain.into());
+
+        let output = pid.update(1.0, 0.0, 1.0);
+        assert_eq!(output, 1.0);
+    }
+
+    #[test]
+    fn test_pi_d_controller_i() {
+        let gain = crate::PidGain {
+            kp: 0.0,
+            ki: 1.0,
+            kd: 0.0,
+        };
+        let mut pid = PiD::new(gain.into());
+
+        let output = pid.update(1.0, 0.0, 1.0);
+        assert_eq!(output, 1.0);
+        let output = pid.update(1.0, 0.0, 1.0);
+        assert_eq!(output, 2.0);
+        let output = pid.update(1.0, 0.0, 1.0);
+        assert_eq!(output, 3.0);
+    }
+
+    #[test]
+    fn test_pi_d_controller_d() {
+        let gain = crate::PidGain {
+            kp: 0.0,
+            ki: 0.0,
+            kd: 1.0,
+        };
+        let mut pid = PiD::new(gain.into());
+
+        let output = pid.update(0.0, 0.0, 1.0);
+        assert_eq!(output, 0.0);
+        let output = pid.update(1.0, 0.0, 1.0);
+        assert_eq!(output, 0.0);
+        let output = pid.update(1.0, 1.0, 1.0);
+        assert_eq!(output, -1.0);
+    }
+}

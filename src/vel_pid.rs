@@ -46,3 +46,64 @@ impl PidController for VelPid {
         self.output
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_vel_pid_p() {
+        let gain = crate::PidGain {
+            kp: 1.0,
+            ki: 0.0,
+            kd: 0.0,
+        };
+        let mut pid = VelPid::new(gain.into());
+
+        let output = pid.update(1.0, 0.0, 1.0);
+        assert_eq!(output, 1.0);
+    }
+
+    #[test]
+    fn test_vel_pid_i() {
+        let gain = crate::PidGain {
+            kp: 0.0,
+            ki: 1.0,
+            kd: 0.0,
+        };
+        let mut pid = VelPid::new(gain.into());
+
+        let output = pid.update(1.0, 0.0, 1.0);
+        assert_eq!(output, 1.0);
+        let output = pid.update(1.0, 0.0, 1.0);
+        assert_eq!(output, 2.0);
+        let output = pid.update(1.0, 0.0, 1.0);
+        assert_eq!(output, 3.0);
+    }
+
+    #[test]
+    fn test_vel_pid_d() {
+        let gain = crate::PidGain {
+            kp: 0.0,
+            ki: 0.0,
+            kd: 1.0,
+        };
+        let mut pid = VelPid::new(gain.into());
+
+        let output = pid.update(1.0, 0.0, 1.0);
+        assert_eq!(output, 0.0);
+        let output = pid.update(1.0, 5.0, 1.0);
+        assert!(output < 0.0, "d_term: {} must be lesser than 0.0", output);
+    }
+
+    #[test]
+    fn test_vel_pid_limits() {
+        let config = PidConfig::new(1.0, 0.0, 0.0).with_limits(-0.5, 0.5);
+        let mut pid = VelPid::new(config);
+
+        let output = pid.update(1.0, 0.0, 1.0);
+        assert_eq!(output, 0.5);
+        let output = pid.update(-1.0, 0.0, 1.0);
+        assert_eq!(output, -0.5);
+    }
+}

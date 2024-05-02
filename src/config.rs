@@ -45,3 +45,61 @@ impl From<Gain> for Config {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_gain_default() {
+        let gain = Gain::default();
+        assert_eq!(gain.kp, 0.0);
+        assert_eq!(gain.ki, 0.0);
+        assert_eq!(gain.kd, 0.0);
+    }
+
+    #[test]
+    fn test_config_new() {
+        let config = Config::new(1.0, 0.5, 0.1);
+        assert_eq!(config.gain.kp, 1.0);
+        assert_eq!(config.gain.ki, 0.5);
+        assert_eq!(config.gain.kd, 0.1);
+        assert_eq!(config.min, FloatType::NEG_INFINITY);
+        assert_eq!(config.max, FloatType::INFINITY);
+    }
+
+    #[test]
+    fn test_config_with_limits() {
+        let config = Config::new(1.0, 0.5, 0.1).with_limits(-2.0, 2.0);
+        assert_eq!(config.gain.kp, 1.0);
+        assert_eq!(config.gain.ki, 0.5);
+        assert_eq!(config.gain.kd, 0.1);
+        assert_eq!(config.min, -2.0);
+        assert_eq!(config.max, 2.0);
+    }
+
+    #[test]
+    fn test_config_from_gain() {
+        let gain = Gain {
+            kp: 1.0,
+            ki: 0.5,
+            kd: 0.1,
+        };
+        let config = Config::from(gain);
+        assert_eq!(config.gain.kp, 1.0);
+        assert_eq!(config.gain.ki, 0.5);
+        assert_eq!(config.gain.kd, 0.1);
+        assert_eq!(config.min, FloatType::NEG_INFINITY);
+        assert_eq!(config.max, FloatType::INFINITY);
+    }
+
+    #[test]
+    fn test_config_default() {
+        let config = Config::default();
+        assert_eq!(config.gain.kp, 0.0);
+        assert_eq!(config.gain.ki, 0.0);
+        assert_eq!(config.gain.kd, 0.0);
+        assert_eq!(config.min, FloatType::NEG_INFINITY);
+        assert_eq!(config.max, FloatType::INFINITY);
+    }
+}
