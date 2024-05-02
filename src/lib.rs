@@ -11,6 +11,8 @@ type FloatType = f32;
 #[cfg(feature = "f64")]
 type FloatType = f64;
 
+pub mod prelude;
+
 pub mod config;
 pub mod i_pd;
 pub mod pi_d;
