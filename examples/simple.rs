@@ -1,9 +1,9 @@
-use advanced_pid::{pid::Pid, PidController, PidGain};
+use advanced_pid::{prelude::*, Pid, PidGain};
 
 fn main() {
     let gain = PidGain {
         kp: 1.0,
-        ki: 0.1,
+        ki: 0.3,
         kd: 0.1,
     };
     let mut pid = Pid::new(gain.into());

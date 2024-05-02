@@ -1,4 +1,4 @@
-use advanced_pid::{vel_pid::VelPid, PidConfig, PidController};
+use advanced_pid::{prelude::*, PidConfig, VelPid};
 
 fn main() {
     let config = PidConfig::new(1.0, 0.1, 0.1).with_limits(-1.0, 1.0);

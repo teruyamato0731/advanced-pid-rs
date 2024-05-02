@@ -1,4 +1,4 @@
-use advanced_pid::{pid::Pid, PidController, PidGain};
+use advanced_pid::{prelude::*, Pid, PidGain};
 
 fn main() {
     let gain = PidGain {

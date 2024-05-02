@@ -1,4 +1,4 @@
-use advanced_pid::{vel_pid::VelPid, PidConfig, PidController};
+use advanced_pid::{prelude::*, PidConfig, VelPid};
 
 use std::time::Instant;
 
