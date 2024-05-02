@@ -16,9 +16,8 @@ name = "advanced_pid"
 path = "src/lib.rs"
 
 [features]
-default = ["std", "f32"]
+default = ["std"]
 std = []
-f32 = []
 f64 = []
 
 [dependencies]

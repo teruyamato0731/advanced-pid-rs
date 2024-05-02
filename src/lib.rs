@@ -4,9 +4,7 @@
 #[macro_use]
 extern crate std;
 
-#[cfg(all(feature = "f32", feature = "f64"))]
-compile_error!("feature \"f32\" and feature \"f64\" cannot be enabled at the same time");
-#[cfg(feature = "f32")]
+#[cfg(not(feature = "f64"))]
 type FloatType = f32;
 #[cfg(feature = "f64")]
 type FloatType = f64;
