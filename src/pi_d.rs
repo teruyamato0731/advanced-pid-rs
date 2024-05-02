@@ -5,9 +5,9 @@
 //! # Examples
 //!
 //! ```rust
-//! use advanced_pid::{prelude::*, PiD, PidGain};
+//! use advanced_pid::{prelude::*, PiD, PidConfig};
 //!
-//! let config = PidConfig::new(1.0, 0.1, 0.1).with_limits(-1.0, 1.0);
+//! let config = PidConfig::new(1.0, 0.3, 0.1).with_limits(-1.0, 1.0);
 //! let mut pid = PiD::new(config);
 //!
 //! let target = 1.0;

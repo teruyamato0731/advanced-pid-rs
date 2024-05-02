@@ -7,7 +7,7 @@
 //! ```rust
 //! use advanced_pid::{i_pd::Ipd, PidConfig, PidController};
 //!
-//! let config = PidConfig::new(1.0, 0.1, 0.1).with_limits(-1.0, 1.0);
+//! let config = PidConfig::new(1.0, 0.3, 0.1).with_limits(-1.0, 1.0);
 //! let mut pid = Ipd::new(config);
 //!
 //! let target = 1.0;
