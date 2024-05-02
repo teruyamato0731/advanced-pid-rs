@@ -1,9 +1,9 @@
 [package]
 name = "advanced-pid"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["teruyamato0731"]
 edition = "2021"
-description = "A simple PID controller library for Rust."
+description = "A PID controller library for Rust with advanced features."
 documentation = "https://docs.rs/advanced-pid/"
 readme = "README.md"
 repository = "https://github.com/teruyamato0731/advanced-pid-rs"
