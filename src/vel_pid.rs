@@ -1,7 +1,26 @@
+//! The `vel_pid` module provides a velocity form PID controller.
+//!
+//! `VelPid` is a structure that implements the [`PidController`] trait, which provides methods for creating a new controller and updating the controller.
+//!
+//! # Examples
+//!
+//! ```rust
+//! use advanced_pid::{prelude::*, PidConfig, VelPid};
+//!
+//! let config = PidConfig::new(1.0, 0.3, 0.1).with_limits(-1.0, 1.0);
+//! let mut pid = VelPid::new(config);
+//!
+//! let target = 1.0;
+//! let actual = 0.0;
+//! let dt = 1.0;
+//!
+//! println!("{}", pid.update(target, actual, dt));
+//! ```
 use super::FloatType;
 use super::PidConfig;
 use super::PidController;
 
+/// `VelPid` is a structure that implements the [`PidController`] trait.
 #[derive(Debug, Clone)]
 pub struct VelPid {
     config: PidConfig,
@@ -12,12 +31,14 @@ pub struct VelPid {
 }
 
 impl Default for VelPid {
+    /// Creates a new `VelPid` with the default configuration.
     fn default() -> Self {
         Self::new(PidConfig::default())
     }
 }
 
 impl PidController for VelPid {
+    /// Creates a new `VelPid` with the specified configuration.
     fn new(config: PidConfig) -> Self {
         Self {
             config,
@@ -27,6 +48,9 @@ impl PidController for VelPid {
             d_term_lpf: 0.0,
         }
     }
+
+    /// Updates the `VelPid` controller with the specified set point, actual value, and time delta.
+    /// Returns the controller output.
     fn update(&mut self, set_point: FloatType, actual: FloatType, dt: FloatType) -> FloatType {
         debug_assert!(dt > 0.0, "dt must be positive");
         let error = set_point - actual;

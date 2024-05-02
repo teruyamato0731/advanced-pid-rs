@@ -1,7 +1,26 @@
+//! The `pi_d` module provides a PID controller where the derivative action is based on the process variable (PV).
+//!
+//! `PiD` is a structure that implements the [`PidController`] trait, which provides methods for creating a new controller and updating the controller.
+//!
+//! # Examples
+//!
+//! ```rust
+//! use advanced_pid::{prelude::*, PiD, PidGain};
+//!
+//! let config = PidConfig::new(1.0, 0.1, 0.1).with_limits(-1.0, 1.0);
+//! let mut pid = PiD::new(config);
+//!
+//! let target = 1.0;
+//! let actual = 0.0;
+//! let dt = 1.0;
+//!
+//! println!("{}", pid.update(target, actual, dt));
+//! ```
 use super::FloatType;
 use super::PidConfig;
 use super::PidController;
 
+/// `PiD` is a structure that implements the [`PidController`] trait.
 #[derive(Debug, Clone)]
 pub struct PiD {
     config: PidConfig,
@@ -10,12 +29,14 @@ pub struct PiD {
 }
 
 impl Default for PiD {
+    /// Creates a new `PiD` with the default configuration.
     fn default() -> Self {
         Self::new(PidConfig::default())
     }
 }
 
 impl PidController for PiD {
+    /// Creates a new `PiD` with the specified configuration.
     fn new(config: PidConfig) -> Self {
         Self {
             config,
@@ -23,6 +44,9 @@ impl PidController for PiD {
             pre_actual: FloatType::NAN,
         }
     }
+
+    /// Updates the `PiD` controller with the specified set point, actual value, and time delta.
+    /// Returns the controller output.
     fn update(&mut self, set_point: FloatType, actual: FloatType, dt: FloatType) -> FloatType {
         let error = set_point - actual;
         self.i_term += error * dt;

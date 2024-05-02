@@ -48,7 +48,7 @@ cargo run --example simulation
 [Example of Standard PID Control](https://github.com/teruyamato0731/advanced-pid-rs/blob/main/examples/simple.rs)
 
 ```rust
-use advanced_pid::{pid::Pid, PidController, PidGain};
+use advanced_pid::{prelude::*, Pid, PidGain};
 
 fn main() {
     let gain = PidGain {
@@ -67,7 +67,7 @@ fn main() {
 [Example of Velocity Form PID Control](https://github.com/teruyamato0731/advanced-pid-rs/blob/main/examples/vel_pid.rs)
 
 ```rust
-use advanced_pid::{vel_pid::VelPid, PidConfig, PidController};
+use advanced_pid::{prelude::*, PidConfig, VelPid};
 
 fn main() {
     let config = PidConfig::new(1.0, 0.1, 0.1).with_limits(-1.0, 1.0);

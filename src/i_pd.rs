@@ -1,7 +1,26 @@
+//! The `i_pd` module provides a PID controller where the proportional action is based on the process variable (PV).
+//!
+//! `Ipd` is a structure that implements the [`PidController`] trait, which provides methods for creating a new controller and updating the controller.
+//!
+//! # Examples
+//!
+//! ```rust
+//! use advanced_pid::{i_pd::Ipd, PidConfig, PidController};
+//!
+//! let config = PidConfig::new(1.0, 0.1, 0.1).with_limits(-1.0, 1.0);
+//! let mut pid = Ipd::new(config);
+//!
+//! let target = 1.0;
+//! let actual = 0.0;
+//! let dt = 1.0;
+//!
+//! println!("{}", pid.update(target, actual, dt));
+//! ```
 use super::FloatType;
 use super::PidConfig;
 use super::PidController;
 
+/// `Ipd` is a structure that implements the [`PidController`] trait.
 #[derive(Debug, Clone)]
 pub struct Ipd {
     config: PidConfig,
@@ -10,12 +29,14 @@ pub struct Ipd {
 }
 
 impl Default for Ipd {
+    /// Creates a new `Ipd` with the default configuration.
     fn default() -> Self {
         Self::new(PidConfig::default())
     }
 }
 
 impl PidController for Ipd {
+    /// Creates a new `Ipd` with the specified configuration.
     fn new(config: PidConfig) -> Self {
         Self {
             config,
@@ -23,6 +44,9 @@ impl PidController for Ipd {
             pre_actual: FloatType::NAN,
         }
     }
+
+    /// Updates the `Ipd` controller with the specified set point, actual value, and time delta.
+    /// Returns the controller output.
     fn update(&mut self, set_point: FloatType, actual: FloatType, dt: FloatType) -> FloatType {
         let error = set_point - actual;
         self.i_term += error * dt;

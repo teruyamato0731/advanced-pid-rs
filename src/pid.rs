@@ -1,7 +1,26 @@
+//! The `pid` module provides a standard (position form) PID controller.
+//!
+//! `Pid` is a structure that implements the [`PidController`] trait, which provides methods for creating a new controller and updating the controller.
+//!
+//! # Examples
+//!
+//! ```
+//! use advanced_pid::{prelude::*, Pid, PidGain};
+//!
+//! let gain = PidGain { kp: 1.0, ki: 0.3, kd: 0.1 };
+//! let mut pid = Pid::new(gain.into());
+//!
+//! let target = 1.0;
+//! let actual = 0.0;
+//! let dt = 1.0;
+//!
+//! println!("{}", pid.update(target, actual, dt));
+//! ```
 use super::FloatType;
 use super::PidConfig;
 use super::PidController;
 
+/// `Pid` is a structure that implements the [`PidController`] trait.
 #[derive(Debug, Clone)]
 pub struct Pid {
     config: PidConfig,
@@ -10,12 +29,14 @@ pub struct Pid {
 }
 
 impl Default for Pid {
+    /// Creates a new `Pid` with the default configuration.
     fn default() -> Self {
         Self::new(PidConfig::default())
     }
 }
 
 impl PidController for Pid {
+    /// Creates a new `Pid` with the specified configuration.
     fn new(config: PidConfig) -> Self {
         Self {
             config,
@@ -23,6 +44,9 @@ impl PidController for Pid {
             pre_error: FloatType::NAN,
         }
     }
+
+    /// Updates the `Pid` controller with the specified set point, actual value, and time delta.
+    /// Returns the controller output.
     fn update(&mut self, set_point: FloatType, actual: FloatType, dt: FloatType) -> FloatType {
         let error = set_point - actual;
         self.i_term += error * dt;
