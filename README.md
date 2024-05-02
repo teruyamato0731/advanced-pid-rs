@@ -1,16 +1,42 @@
+<div align="center">
+
 # advanced-pid-rs
+
+**An advanced PID control library implemented in Rust**
 
 [![Crates.io Version](https://img.shields.io/crates/v/advanced-pid)](https://crates.io/crates/advanced-pid)
 [![Documentation at docs.rs](https://img.shields.io/docsrs/advanced-pid)](https://docs.rs/advanced-pid)
 [![License: MIT](https://img.shields.io/github/license/teruyamato0731/advanced-pid-rs)](https://github.com/teruyamato0731/advanced-pid-rs/blob/main/LICENSE)
+[![CI](https://github.com/teruyamato0731/advanced-pid-rs/actions/workflows/ci.yaml/badge.svg)](https://github.com/teruyamato0731/advanced-pid-rs/actions/workflows/ci.yaml)
+
+[Crates.io](https://crates.io/crates/advanced-pid)
+| [API Docs](https://docs.rs/advanced-pid)
+| [Examples](https://github.com/teruyamato0731/advanced-pid-rs/tree/main/examples)
+
+</div>
 
 ## Highlights
-- Advanced PID control library available in Rust
-- Supports many PID controls
-    - Position (normal) PID Control
+- Supports various types of PID controls
+    - Position (standard) PID Control
     - Velocity form PID Control
-    - Basing derivative action on PV (PI-D)
-    - Basing proportional action on PV (I-PD)
+    - Derivative action based on PV (PI-D)
+    - Proportional action based on PV (I-PD)
+- Customizable PID gains and limits
+- `no_std` support
+- User-friendly with the PidController trait
+- Includes a simulation example
+
+## Installation
+To install, run the following Cargo command in your project directory:
+```bash
+cargo add advanced-pid
+```
+
+Or add the following to your Cargo.toml:
+```toml
+[dependencies]
+advanced-pid = "0.1"
+```
 
 ## Quick Start
 ```bash
@@ -18,7 +44,10 @@ cargo run --example simulation
 ```
 
 ## Examples
-```rust:examples/simple.rs
+
+[Example of Standard PID Control](https://github.com/teruyamato0731/advanced-pid-rs/blob/main/examples/simple.rs)
+
+```rust
 use advanced_pid::{pid::Pid, PidController, PidGain};
 
 fn main() {
@@ -35,7 +64,9 @@ fn main() {
 }
 ```
 
-```rust:examples/vel_pid.rs
+[Example of Velocity Form PID Control](https://github.com/teruyamato0731/advanced-pid-rs/blob/main/examples/vel_pid.rs)
+
+```rust
 use advanced_pid::{vel_pid::VelPid, PidConfig, PidController};
 
 fn main() {
@@ -52,9 +83,9 @@ fn main() {
 ```
 
 ## More information
-For more information, check out:
-- [crates.io](https://crates.io/crates/advanced-pid)
-- [docs.rs](https://docs.rs/advanced-pid)
+For additional information, please visit:
+- [Crates.io](https://crates.io/crates/advanced-pid)
+- [API Docs](https://docs.rs/advanced-pid)
 - [Other examples](https://github.com/teruyamato0731/advanced-pid-rs/tree/main/examples)
 
 ## License
