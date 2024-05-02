@@ -22,7 +22,7 @@ impl PidController for VelPid {
         Self {
             config,
             output: 0.0,
-            pre_error: FloatType::NAN,
+            pre_error: 0.0,
             pre_p_term: FloatType::NAN,
             d_term_lpf: 0.0,
         }
@@ -30,11 +30,7 @@ impl PidController for VelPid {
     fn update(&mut self, set_point: FloatType, actual: FloatType, dt: FloatType) -> FloatType {
         debug_assert!(dt > 0.0, "dt must be positive");
         let error = set_point - actual;
-        let p_term = if self.pre_error.is_nan() {
-            0.0
-        } else {
-            (error - self.pre_error) / dt
-        };
+        let p_term = (error - self.pre_error) / dt;
         let d_term = if self.pre_p_term.is_nan() {
             0.0
         } else {
