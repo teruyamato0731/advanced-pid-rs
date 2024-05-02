@@ -9,9 +9,9 @@
 [![License: MIT](https://img.shields.io/github/license/teruyamato0731/advanced-pid-rs)](https://github.com/teruyamato0731/advanced-pid-rs/blob/main/LICENSE)
 [![CI](https://github.com/teruyamato0731/advanced-pid-rs/actions/workflows/ci.yaml/badge.svg)](https://github.com/teruyamato0731/advanced-pid-rs/actions/workflows/ci.yaml)
 
-[Crates.io](https://crates.io/crates/advanced-pid)
-| [API Docs](https://docs.rs/advanced-pid)
-| [Examples](https://github.com/teruyamato0731/advanced-pid-rs/tree/main/examples)
+[**Crates.io**](https://crates.io/crates/advanced-pid)
+| [**API Docs**](https://docs.rs/advanced-pid)
+| [**Examples**](https://github.com/teruyamato0731/advanced-pid-rs/tree/main/examples)
 
 </div>
 
@@ -53,7 +53,7 @@ use advanced_pid::{pid::Pid, PidController, PidGain};
 fn main() {
     let gain = PidGain {
         kp: 1.0,
-        ki: 0.1,
+        ki: 0.3,
         kd: 0.1,
     };
     let mut pid = Pid::new(gain.into());
