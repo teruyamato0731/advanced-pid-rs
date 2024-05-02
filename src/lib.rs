@@ -24,6 +24,14 @@
 //! advanced_pid = { version = "0.1", default-features = false }
 //! ```
 //!
+//! ## Floating point precision
+//! This library allows switching between `f32` and `f64` floating point types through feature flags.
+//! To use `f64` precision, enable the `f64` feature in your `Cargo.toml`:
+//! ```toml
+//! [dependencies]
+//! advanced_pid = { version = "0.1", features = ["f64"] }
+//! ```
+//!
 //! ## Examples
 //! ```
 //! use advanced_pid::{prelude::*, Pid, PidGain};

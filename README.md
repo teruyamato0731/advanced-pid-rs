@@ -25,6 +25,7 @@
 - `no_std` support
 - User-friendly with the PidController trait
 - Includes a simulation example
+- Allows switching between `f32` and `f64` floating point types through feature flags
 
 ## Installation
 To install, run the following Cargo command in your project directory:
