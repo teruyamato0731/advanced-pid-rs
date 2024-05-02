@@ -22,6 +22,11 @@ pub mod vel_pid;
 pub type PidGain = config::Gain;
 pub type PidConfig = config::Config;
 
+pub use crate::i_pd::Ipd;
+pub use crate::pi_d::PiD;
+pub use crate::pid::Pid;
+pub use crate::vel_pid::VelPid;
+
 pub trait PidController {
     fn new(config: PidConfig) -> Self;
     fn update(&mut self, set_point: FloatType, actual: FloatType, dt: FloatType) -> FloatType;
