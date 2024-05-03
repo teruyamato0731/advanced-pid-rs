@@ -99,11 +99,7 @@ pub trait PidController {
     /// use advanced_pid::{prelude::*, Pid};
     ///
     /// let mut controller = Pid::default();
-    /// update_controller(&mut controller, 0.0);
-    ///
-    /// fn update_controller(controller: &mut impl PidController, actual: f32) -> f32 {
-    ///    controller.update(1.0, actual, 0.1)
-    /// }
+    /// controller.update(1.0, 0.0, 0.1);
     /// ```
     fn update(&mut self, set_point: FloatType, actual: FloatType, dt: FloatType) -> FloatType;
 

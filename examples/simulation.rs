@@ -21,6 +21,11 @@ fn main() {
         println!("{:5.2}", actual);
 
         // Sleep 100ms
-        std::thread::sleep(std::time::Duration::from_secs_f32(dt));
+        sleep(dt);
     }
+}
+
+fn sleep<T: Into<f64>>(dt: T) {
+    let dur = std::time::Duration::from_secs_f64(dt.into());
+    std::thread::sleep(dur);
 }

@@ -1,6 +1,6 @@
 use advanced_pid::{prelude::*, PidConfig, VelPid};
 
-use std::time::Instant;
+use std::time::{Duration, Instant};
 
 fn main() {
     let mut pid = VelPid::default();
@@ -15,11 +15,21 @@ fn main() {
         let now = Instant::now();
         let dt = now - pre;
 
-        if dt > std::time::Duration::from_secs(1) {
-            let output = pid.update(target, actual, dt.as_secs_f32());
+        if dt > Duration::from_secs(1) {
+            let sec = as_secs(dt);
+            let output = pid.update(target, actual, sec);
             actual += (output - actual) / 8.0;
             println!("{:5.2}\t{:5.2}\t{:?}", actual, output, dt);
             pre = now;
         }
     }
+}
+
+#[cfg(not(feature = "f64"))]
+fn as_secs(duration: Duration) -> f32 {
+    duration.as_secs_f32()
+}
+#[cfg(feature = "f64")]
+fn as_secs(duration: Duration) -> f64 {
+    duration.as_secs_f64()
 }
