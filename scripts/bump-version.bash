@@ -11,7 +11,7 @@ cd "${BASH_SOURCE[0]%/*}"/..
 if [ -n "${VERSION:-}" ]; then
   echo "Bump Cargo.toml: ${VERSION}"
   TARGET=("Cargo.toml")
-  sed -i -e "/version/s/\"[0-9]\+\.[0-9]\+\.[0-9]\+.*\"/\"${VERSION}\"/" "${TARGET[@]}"
+  sed -i -e "/version/s/\"[0-9]\+\.[0-9]\+\.[0-9]\+[^\"]*\"/\"${VERSION}\"/" "${TARGET[@]}"
 fi
 
 # TARGETのversionを更新する
@@ -21,4 +21,4 @@ VERSION=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[] | sel
 echo "Version: ${VERSION:?"cann't read version."}, Target: ${TARGET[*]}"
 # 正規表現でバージョンを置換
 # "0.1.12-alpha" のようなバージョン表記を"${VERSION}"に置換する
-sed -i -e "/advanced-pid/s/\"[0-9]\+\.[0-9]\+\.[0-9]\+.*\"/\"${VERSION}\"/" "${TARGET[@]}"
+sed -i -e "/advanced-pid/s/\"[0-9]\+\.[0-9]\+\.[0-9]\+[^\"]*\"/\"${VERSION}\"/" "${TARGET[@]}"
