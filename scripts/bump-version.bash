@@ -9,7 +9,7 @@ cd "${BASH_SOURCE[0]%/*}"/..
 
 # 環境変数でバージョンが指定されたとき、Cargo.tomlを上書き
 if [ -n "${VERSION:-}" ]; then
-  echo "Bump Cargo.toml: ${VERSION}"
+  echo "Bump version: v${VERSION}"
   TARGET=("Cargo.toml")
   sed -i -e "/version/s/\"[0-9]\+\.[0-9]\+\.[0-9]\+[^\"]*\"/\"${VERSION}\"/" "${TARGET[@]}"
 fi
