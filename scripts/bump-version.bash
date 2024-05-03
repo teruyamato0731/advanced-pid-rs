@@ -17,7 +17,7 @@ fi
 # TARGETのversionを更新する
 TARGET=("README.md" "src/lib.rs")
 # Cargo.toml のバージョンを取得
-VERSION=$(cargo read-manifest | jq -r .version)
+VERSION=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[] | select(.name == "advanced-pid") | .version')
 echo "Version: ${VERSION:?"cann't read version."}, Target: ${TARGET[*]}"
 # 正規表現でバージョンを置換
 # "0.1.12-alpha" のようなバージョン表記を"${VERSION}"に置換する
