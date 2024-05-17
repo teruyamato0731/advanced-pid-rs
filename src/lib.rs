@@ -16,6 +16,18 @@
 //! The trait provides a `new` method for creating a new controller, an `update` method for updating the controller,
 //! and a `reset_config` method for resetting the controller's configuration.
 //!
+//! ## Installation
+//! To install, run the following Cargo command in your project directory:
+//! ```bash
+//! cargo add advanced-pid
+//! ```
+//!
+//! Or add the following to your Cargo.toml:
+//! ```toml
+//! [dependencies]
+//! advanced-pid = "0.2.1"
+//! ```
+//!
 //! ## No-std support
 //! This library is designed to be `no_std` compatible.
 //! To use this library in a `no_std` environment, disable the default features in your `Cargo.toml`:
@@ -26,6 +38,7 @@
 //!
 //! ## Floating point precision
 //! This library allows switching between `f32` and `f64` floating point types through feature flags.
+//! By default, `f32` precision is used.
 //! To use `f64` precision, enable the `f64` feature in your `Cargo.toml`:
 //! ```toml
 //! [dependencies]
@@ -99,7 +112,7 @@ pub trait PidController {
     /// use advanced_pid::{prelude::*, Pid};
     ///
     /// let mut controller = Pid::default();
-    /// controller.update(1.0, 0.0, 0.1);
+    /// let output = controller.update(1.0, 0.0, 0.1);
     /// ```
     fn update(&mut self, set_point: FloatType, actual: FloatType, dt: FloatType) -> FloatType;
 
