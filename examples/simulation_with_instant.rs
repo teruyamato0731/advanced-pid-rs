@@ -13,13 +13,12 @@ fn main() {
     let mut pre = Instant::now();
     loop {
         let now = Instant::now();
-        let dt = now - pre;
-
-        if dt > Duration::from_secs(1) {
-            let sec = as_secs(dt);
+        let duration = pre.elapsed();
+        if duration > Duration::from_secs(1) {
+            let sec = as_secs(duration);
             let output = pid.update(target, actual, sec);
             actual += (output - actual) / 8.0;
-            println!("{:5.2}\t{:5.2}\t{:?}", actual, output, dt);
+            println!("{:5.2}\t{:5.2}\t{:?}", actual, output, duration);
             pre = now;
         }
     }
