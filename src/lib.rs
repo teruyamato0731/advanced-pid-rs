@@ -25,7 +25,7 @@
 //! Or add the following to your Cargo.toml:
 //! ```toml
 //! [dependencies]
-//! advanced-pid = "0.2.1"
+//! advanced-pid = "0.2.2"
 //! ```
 //!
 //! ## No-std support
@@ -33,7 +33,7 @@
 //! To use this library in a `no_std` environment, disable the default features in your `Cargo.toml`:
 //! ```toml
 //! [dependencies]
-//! advanced-pid = { version = "0.2.1", default-features = false }
+//! advanced-pid = { version = "0.2.2", default-features = false }
 //! ```
 //!
 //! ## Floating point precision
@@ -42,7 +42,7 @@
 //! To use `f64` precision, enable the `f64` feature in your `Cargo.toml`:
 //! ```toml
 //! [dependencies]
-//! advanced-pid = { version = "0.2.1", features = ["f64"] }
+//! advanced-pid = { version = "0.2.2", features = ["f64"] }
 //! ```
 //!
 //! ## Examples

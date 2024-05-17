@@ -1,6 +1,6 @@
 [package]
 name = "advanced-pid"
-version = "0.2.1"
+version = "0.2.2"
 authors = ["teruyamato0731"]
 edition = "2021"
 description = "An advanced PID control library implemented in Rust"

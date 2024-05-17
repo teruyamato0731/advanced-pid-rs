@@ -36,7 +36,7 @@ cargo add advanced-pid
 Or add the following to your Cargo.toml:
 ```toml
 [dependencies]
-advanced-pid = "0.2.1"
+advanced-pid = "0.2.2"
 ```
 
 ## Quick Start
