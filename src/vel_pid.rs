@@ -66,7 +66,7 @@ impl PidController for VelPid {
             + self.config.gain.kd * self.d_term_lpf;
         self.pre_error = error;
         self.pre_p_term = p_term;
-        self.output = (self.output + du).clamp(self.config.min, self.config.max);
+        self.output = (self.output + du * dt).clamp(self.config.min, self.config.max);
         self.output
     }
 }
